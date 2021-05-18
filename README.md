@@ -4,7 +4,7 @@ This package is a Python library for calling the [Agility CMS Rest API.](https:/
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install agility-cms.
 
 ```bash
 pip install agility-cms
