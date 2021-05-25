@@ -15,14 +15,14 @@ pip install agility-cms
 ```python
 import agility_cms
 
-client = agility_cms.Client('<your guid>', '<your api key>')
+client = agility_cms.Client('<your guid>', '<your api key>', locale="en-us", preview=True)
 
 client.gallery('<gallery id>')
-client.item('<item id>')
-client.list('<reference name>')
-client.page('<page id>')
-client.sitemap('<channel name>')
-client.sync_items()
-client.sync_pages()
-client.url_redirections()
+client.item('<item id>', content_link_depth=1, expand_all_content_links=False)
+client.list('<reference name>', fields=str(), take=10, skip=int(), filter_=str(), sort=str(), direction='asc', content_link_depth=1, expand_all_content_links=False)
+client.page('<page id>', content_link_depth=2, expand_all_content_links=False)
+client.sitemap('<channel name>', nested=False)
+client.sync_items(sync_token=int(), page_size=500)
+client.sync_pages(sync_token=int(), page_size=500)
+client.url_redirections(last_access_date=str())
 ```

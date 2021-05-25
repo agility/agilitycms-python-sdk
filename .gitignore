@@ -2,3 +2,6 @@ build
 dist
 *.egg-info
 .pypirc
+.idea
+src/virt_env
+src/test.py
