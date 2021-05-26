@@ -1,15 +1,16 @@
 import requests
+import json
 
 
 class Client:
-    def __init__(self, guid, api_key, locale="en-us", preview=True):
+    def __init__(self, guid, api_key, locale="en-us", preview=True, url='api.aglty.io'):
         if preview:
             apitype = "preview"
         else:
             apitype = "fetch"
 
         self.__locale = locale
-        self.__base = '/'.join(["https://api-dev.aglty.io", guid, apitype])
+        self.__base = '/'.join([url, guid, apitype])
         self.__headers = {
             "accept": "application/json",
             "APIKey": api_key
@@ -89,3 +90,23 @@ class Client:
         if last_access_date != str():
             payload = {"lastAccessDate": last_access_date}
         return self.__get(self.__url('urlredirection'), params=payload)
+        
+    def sync_all_items(self):
+        all_items = []
+        resp = self.sync_items()
+
+        while len(resp['items']) > 0:
+            all_items += resp['items']
+            resp = self.sync_items(sync_token=resp['syncToken'])
+        
+        return all_items
+        
+    def sync_all_pages(self):
+        all_items = []
+        resp = self.sync_pages()
+
+        while len(resp['items']) > 0:
+            all_items += resp['items']
+            resp = self.sync_pages(sync_token=resp['syncToken'])
+        
+        return all_items
