@@ -3,7 +3,7 @@ import json
 
 
 class Client:
-    def __init__(self, guid, api_key, locale="en-us", preview=True, url='api.aglty.io'):
+    def __init__(self, guid, api_key, locale="en-us", preview=False, url='api.aglty.io'):
         if preview:
             apitype = "preview"
         else:
@@ -31,7 +31,7 @@ class Client:
     def item(self, item_id, content_link_depth=1, expand_all_content_links=False):
         payload = {
             "contentLinkDepth": content_link_depth,
-            "expandAllContentLinks": expandAllContentLinks
+            "expandAllContentLinks": expand_all_content_links
         }
         return self.__get(self.__url(self.__locale, 'item', str(item_id)), params=payload)
 
@@ -58,7 +58,7 @@ class Client:
     def page(self, page_id, content_link_depth=2, expand_all_content_links=False):
         payload = {
             "contentLinkDepth": content_link_depth,
-            "expandAllContentLinks": expandAllContentLinks
+            "expandAllContentLinks": expand_all_content_links
         }
         return self.__get(self.__url(self.__locale, 'page', str(page_id)), params=payload)
 
